@@ -6,7 +6,7 @@
 /*   By: sconstab <sconstab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 13:29:43 by sconstab          #+#    #+#             */
-/*   Updated: 2019/08/14 12:02:07 by sconstab         ###   ########.fr       */
+/*   Updated: 2019/08/15 18:04:26 by sconstab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,10 @@ static void	ps_swap(t_ps **alst)
 {
 	t_ps	*lst_prev;
 
-	lst_prev = *alst;
 	if (!(*alst) || !((*alst)->next))
 		return ;
 	*alst = (*alst)->next;
+	lst_prev = (*alst)->prev;
 	lst_prev->prev = *alst;
 	lst_prev->next = (*alst)->next;
 	(*alst)->prev = NULL;
@@ -125,12 +125,7 @@ static void	ps_swap(t_ps **alst)
 
 static void	ps_knock(t_ps **srclst, t_ps **dstlst)
 {
-	t_ps	*tmp;
-	if (!(tmp = ps_pop(srclst)))
-		return ;
-	tmp->next = *dstlst;
-	(*dstlst)->prev = tmp;
-	*dstlst = (*dstlst)->prev;
+	ps_lstpush(dstlst, ps_pop(srclst));
 }
 
 static void ps_rot(t_ps **alst)
@@ -181,6 +176,8 @@ static void ps_print(t_ps *alst, t_ps *blst)
 			printf("\t%s", blst->content);
 			blst = blst->next;
 		}
+		//else
+		//	printf("%s\n", "hello");
 		printf("\n");
 	}
 	printf("%s\t%s\n%s\t%s\n", "_", "_", "a", "b");
@@ -229,7 +226,8 @@ int	main(int ac, char **av)
 				ps_revrot(&lst_b);
 			if (ft_strcmp(input, "exit") == 0)
 				return (0);
-			ps_print(lst_a, lst_b);
+			if (ft_strcmp(input, "print") == 0)
+				ps_print(lst_a, lst_b);
 		}
 	}
 	return (0);
