@@ -12,7 +12,7 @@
 
 #include "libft/libft.h"
 
-static t_node	*ps_lstnew(void const *content, size_t content_size)
+/* static t_node	*ps_lstnew(void const *content, size_t content_size)
 {
 	t_node	*lst;
 
@@ -73,14 +73,6 @@ static t_node	*ps_pop(t_node **alst)
 {
 	t_node	*node_pop;
 	t_node	*node_prev;
-
-/* 	if (!(*alst)->next || !(*alst))
-		return (NULL);
-	*alst = (*alst)->next;
-	node_pop = (*alst)->prev;
-	node_pop->next = NULL;
-	(*alst)->prev = NULL;
-	return (node_pop); */
 
 	if (!(*alst) || !(*alst)->next)
 		return (NULL);
@@ -146,7 +138,7 @@ static void ps_revrot(t_node **alst)
 		*alst = (*alst)->next;
 	tmp_lst = ps_pop(alst);
 	ps_lstpush(alst, tmp_lst);
-}
+} */
 
 static void ps_print(t_node *alst, t_node *blst)
 {
