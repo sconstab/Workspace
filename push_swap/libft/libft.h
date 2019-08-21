@@ -6,7 +6,7 @@
 /*   By: sconstab <sconstab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 14:13:39 by sconstab          #+#    #+#             */
-/*   Updated: 2019/08/15 17:17:45 by sconstab         ###   ########.fr       */
+/*   Updated: 2019/08/20 10:28:13 by sconstab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,16 @@ typedef struct		s_ps
 {
 	void			*content;
 	size_t			content_size;
-	struct s_ps		*next;
-	struct s_ps		*prev;
 }					t_ps;
+
+# define TYPE t_ps
+
+typedef struct		s_node
+{
+	struct s_node	*prev;
+	struct s_node	*next;
+	TYPE			*dt;
+}					t_node;
 
 # define BUFF_SIZE 32
 

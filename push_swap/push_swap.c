@@ -6,41 +6,44 @@
 /*   By: sconstab <sconstab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 13:29:43 by sconstab          #+#    #+#             */
-/*   Updated: 2019/08/15 18:04:26 by sconstab         ###   ########.fr       */
+/*   Updated: 2019/08/20 11:08:18 by sconstab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 
-static t_ps	*ps_lstnew(void const *content, size_t content_size)
+static t_node	*ps_lstnew(void const *content, size_t content_size)
 {
-	t_ps	*lst;
+	t_node	*lst;
 
-	if (!(lst = malloc(sizeof(t_ps) * (content_size + 1))))
+	if (!(lst = malloc(sizeof(t_node) * (content_size + 1))))
+		return (NULL);
+	if (!(lst->dt = malloc(sizeof(TYPE) * (content_size + 1))))
 		return (NULL);
 	if (content == NULL)
 	{
-		lst->content = NULL;
-		lst->content_size = 0;
+		lst->dt->content = NULL;
+		lst->dt->content_size = 0;
 	}
 	else
 	{
-		if (!(lst->content = ft_memalloc(sizeof(content_size))))
+		if (!(lst->dt->content = ft_memalloc(content_size)))
 		{
 			free (lst);
 			return (NULL);
 		}
-		lst->content = ft_memcpy(lst->content, content, content_size);
-		lst->content_size = content_size;
+		lst->dt->content = ft_memcpy(lst->dt->content, content, content_size);
+		lst->dt->content_size = content_size;
 	}
 	lst->next = NULL;
 	lst->prev = NULL;
 	return (lst);
 }
 
-static void	ps_lstadd(t_ps **alst, t_ps *new)
+static void	ps_lstadd(t_node **alst, t_node *new)
 {
-	t_ps	*prev;
+	t_node	*prev;
+
 	if (!(*alst) || !new)
 		return ;
 	while ((*alst)->next != NULL)
@@ -57,7 +60,7 @@ static void	ps_lstadd(t_ps **alst, t_ps *new)
 		*alst = (*alst)->prev;
 }
 
-static void	ps_lstpush(t_ps **alst, t_ps *new)
+static void	ps_lstpush(t_node **alst, t_node *new)
 {
 	if (!(*alst) || !new)
 		return ;
@@ -66,52 +69,41 @@ static void	ps_lstpush(t_ps **alst, t_ps *new)
 	*alst = (*alst)->prev;
 }
 
-static t_ps	*ps_pop(t_ps **alst)
+static t_node	*ps_pop(t_node **alst)
 {
-	t_ps	*lstnode;
+	t_node	*node_pop;
+	t_node	*node_prev;
 
-	if (!(*alst)->next || !(*alst))
+/* 	if (!(*alst)->next || !(*alst))
 		return (NULL);
 	*alst = (*alst)->next;
-	lstnode = (*alst)->prev;
-	lstnode->next = NULL;
+	node_pop = (*alst)->prev;
+	node_pop->next = NULL;
 	(*alst)->prev = NULL;
-	return (lstnode);
-}
+	return (node_pop); */
 
-static t_ps	*ps_popindex(t_ps **alst, unsigned int index)
-{
-	int		i;
-	t_ps	*lstnode;
-
-	i = 0;
-	lstnode = NULL;
-	if (!alst || !index)
+	if (!(*alst) || !(*alst)->next)
 		return (NULL);
-	if (index == 0)
-		return (ps_pop(alst));
-	while (i < index)
+	*alst = (*alst)->next;
+	node_pop = (*alst)->prev;
+	if (node_pop->prev != NULL)
 	{
-		if ((*alst)->next == NULL)
-			return (NULL);
-		*alst = (*alst)->next;
-		i++;
+		node_prev = node_pop->prev;
+		node_pop->prev = NULL;
+		node_prev->next = *alst;
+		(*alst)->prev = node_prev;
 	}
-	lstnode = *alst;
-	free (*alst);
-	lstnode->next->prev = lstnode->prev;
-	lstnode->prev->next = lstnode->next;
-	*alst = lstnode->prev;
+	else
+		(*alst)->prev = NULL;
+	node_pop->next = NULL;
 	while ((*alst)->prev != NULL)
 		*alst = (*alst)->prev;
-	lstnode->prev = NULL;
-	lstnode->next = NULL;
-	return (lstnode);
+	return (node_pop);
 }
 
-static void	ps_swap(t_ps **alst)
+static void	ps_swap(t_node **alst)
 {
-	t_ps	*lst_prev;
+	t_node	*lst_prev;
 
 	if (!(*alst) || !((*alst)->next))
 		return ;
@@ -119,18 +111,19 @@ static void	ps_swap(t_ps **alst)
 	lst_prev = (*alst)->prev;
 	lst_prev->prev = *alst;
 	lst_prev->next = (*alst)->next;
+	lst_prev->next->prev = lst_prev;
 	(*alst)->prev = NULL;
 	(*alst)->next = lst_prev;
 }
 
-static void	ps_knock(t_ps **srclst, t_ps **dstlst)
+static void	ps_knock(t_node **srclst, t_node **dstlst)
 {
 	ps_lstpush(dstlst, ps_pop(srclst));
 }
 
-static void ps_rot(t_ps **alst)
+static void ps_rot(t_node **alst)
 {
-	t_ps	*tmp_lst;
+	t_node	*tmp_lst;
 
 	*alst = (*alst)->next;
 	tmp_lst = (*alst)->prev;
@@ -145,35 +138,29 @@ static void ps_rot(t_ps **alst)
 		*alst = (*alst)->prev;
 }
 
-static void ps_revrot(t_ps **alst)
+static void ps_revrot(t_node **alst)
 {
-	t_ps	*tmp_lst;
+	t_node	*tmp_lst;
 
 	while ((*alst)->next->next != NULL)
 		*alst = (*alst)->next;
-	tmp_lst = (*alst)->next;
-	tmp_lst->prev->next = NULL;
-	tmp_lst->prev = NULL;
-	while ((*alst)->prev != NULL)
-		*alst = (*alst)->prev;
-	tmp_lst->next = *alst;
-	(*alst)->prev = tmp_lst;
-	*alst = (*alst)->prev;
+	tmp_lst = ps_pop(alst);
+	ps_lstpush(alst, tmp_lst);
 }
 
-static void ps_print(t_ps *alst, t_ps *blst)
+static void ps_print(t_node *alst, t_node *blst)
 {
 	printf("%s\n", "Init a and b:");
 	while (alst->next != NULL || blst->next != NULL)
 	{
 		if (alst->next != NULL)
 		{
-			printf("%s", alst->content);
+			printf("%s", alst->dt->content);
 			alst = alst->next;
 		}
 		if (blst->next != NULL)
 		{
-			printf("\t%s", blst->content);
+			printf("\t%s", blst->dt->content);
 			blst = blst->next;
 		}
 		//else
@@ -185,8 +172,8 @@ static void ps_print(t_ps *alst, t_ps *blst)
 
 int	main(int ac, char **av)
 {
-	t_ps	*lst_a;
-	t_ps	*lst_b;
+	t_node	*lst_a;
+	t_node	*lst_b;
 	int		i;
 	char	input[6];
 
@@ -226,7 +213,7 @@ int	main(int ac, char **av)
 				ps_revrot(&lst_b);
 			if (ft_strcmp(input, "exit") == 0)
 				return (0);
-			if (ft_strcmp(input, "print") == 0)
+			//if (ft_strcmp(input, "print") == 0)
 				ps_print(lst_a, lst_b);
 		}
 	}
