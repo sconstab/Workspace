@@ -13,9 +13,9 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <stdbool.h>
+# include "stdlib.h"
+# include "unistd.h"
+# include "stdio.h"
 
 typedef struct		s_list
 {
@@ -111,5 +111,14 @@ char				*ft_strcreturn(char const *s, char c, size_t x);
 int					ft_find_replace(char *str, char f, char r);
 
 int					get_next_line(int fd, char **line);
+
+t_node				*ps_lstnew(void const *content, size_t content_size);
+void				ps_lstadd(t_node **alst, t_node *new);
+void				ps_lstpush(t_node **alst, t_node *new);
+t_node				*ps_pop(t_node **alst);
+void				ps_swap(t_node **alst);
+void				ps_knock(t_node **srclst, t_node **dstlst);
+void				ps_rot(t_node **alst);
+void				ps_revrot(t_node **alst);
 
 #endif

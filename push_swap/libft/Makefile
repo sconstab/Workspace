@@ -36,6 +36,14 @@ SRC = ft_atoi.c\
 		ft_memdel.c\
 		ft_memmove.c\
 		ft_memset.c\
+		ft_ps_knock.c\
+		ft_ps_lstadd.c\
+		ft_ps_lstnew.c\
+		ft_ps_lstpush.c\
+		ft_ps_pop.c\
+		ft_ps_revrot.c\
+		ft_ps_rot.c\
+		ft_ps_swap.c\
 		ft_putchar.c\
 		ft_putchar_fd.c\
 		ft_putendl.c\
@@ -77,7 +85,8 @@ SRC = ft_atoi.c\
 		ft_strtrim.c\
 		ft_tolower.c\
 		ft_toupper.c\
-		ft_wordcount.c
+		ft_wordcount.c\
+		get_next_line.c\
 
 OBJ = $(patsubst %.c, %.o, $(SRC));
 
