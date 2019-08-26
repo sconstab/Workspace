@@ -24,7 +24,7 @@ t_node	*ps_pop(t_node **alst)
 	if (node_pop->prev != NULL)
 	{
 		node_prev = node_pop->prev;
-		node_prev->prev = NULL;
+		node_pop->prev = NULL;
 		node_prev->next = *alst;
 		(*alst)->prev = node_prev;
 	}
