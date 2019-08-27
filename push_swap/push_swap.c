@@ -77,7 +77,7 @@ int	main(int ac, char **av)
 		i = 0;
 		while (i == 0)
 		{
-			last = lst_a->next;
+			last = lst_a;
 			while (last->next->next != NULL)
 				last = last->next;
 			if (lst_b->next->next != NULL)
@@ -89,10 +89,13 @@ int	main(int ac, char **av)
 			{
 				if (ft_atoi(lst_a->dt->content) > ft_atoi(lst_a->next->dt->content))
 					ps_swap(&lst_a);
-				if (ft_atoi(lst_a->dt->content) > ft_atoi(last))
+				if (ft_atoi(lst_a->dt->content) > ft_atoi(last->dt->content))
+					ps_revrot(&lst_a);
 			}
-			else
+			else if (lst_a->next != NULL)
 				ps_knock(&lst_a, &lst_b);
+			else
+				return (0);
 			ps_print(lst_a, lst_b);
 			sleep(5);
 			if (lst_a->next == NULL)
