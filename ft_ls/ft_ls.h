@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sconstab <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sconstab <sconstab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/27 14:23:39 by sconstab          #+#    #+#             */
-/*   Updated: 2019/05/27 14:53:07 by sconstab         ###   ########.fr       */
+/*   Created: 2019/09/07 19:51:25 by sconstab          #+#    #+#             */
+/*   Updated: 2019/09/07 20:36:34 by sconstab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_LS_H
+# define FT_LS_H
 
-int	ft_strcmp(const char *s1, const char *s2)
+# include "libc.h"
+# include <sys/dir.h>
+# include "../libft/libft.h"
+
+# define LIST DIR
+
+typedef struct	s_ls
 {
-	size_t i;
+    struct s_ls	*prev;
+	LIST		*data;
+	struct s_ls	*next;
+}				t_ls;
 
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return ((unsigned char)(s1[i]) - (unsigned char)(s2[i]));
-}
+#endif

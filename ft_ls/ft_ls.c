@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sconstab <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sconstab <sconstab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/20 14:05:21 by sconstab          #+#    #+#             */
-/*   Updated: 2019/06/05 16:11:45 by sconstab         ###   ########.fr       */
+/*   Created: 2019/09/07 19:33:32 by sconstab          #+#    #+#             */
+/*   Updated: 2019/09/07 20:36:34 by sconstab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_ls.h"
 
-void	ft_putchar(char c)
+int main(int ac, char **av)
 {
-	write(1, &c, 1);
+    int 	i;
+	t_ls	*ls;
+
+    i = 0;
+	ls = ft_memalloc(sizeof(ls));
+	ls->data = ft_memalloc(sizeof(ls->data));
+    ls->data = opendir("./");
+	
 }
