@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayla <ayla@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/19 06:50:55 by sconstab          #+#    #+#             */
-/*   Updated: 2019/09/17 12:27:04 by ayla             ###   ########.fr       */
+/*   Created: 2019/06/05 15:07:48 by sconstab          #+#    #+#             */
+/*   Updated: 2019/09/17 12:40:46 by ayla             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 32
-# define MAX_FD 1024
+#include "../includes/libft.h"
 
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include "../libft/includes/libft.h"
+void	ft_putstr(char const *s)
+{
+	size_t	i;
 
-int get_next_line(const int fd, char **line);
-
-#endif
+	i = 0;
+	if (!s)
+		return ((void)NULL);
+	while (i < ft_strlen(s))
+	{
+		ft_putchar(s[i]);
+		i++;
+	}
+}

@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayla <ayla@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/19 06:50:55 by sconstab          #+#    #+#             */
-/*   Updated: 2019/09/17 12:27:04 by ayla             ###   ########.fr       */
+/*   Created: 2019/05/30 08:31:01 by sconstab          #+#    #+#             */
+/*   Updated: 2019/09/17 12:40:46 by ayla             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 32
-# define MAX_FD 1024
+#include "../includes/libft.h"
 
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include "../libft/includes/libft.h"
+int	ft_strnequ(char const *s1, char const *s2, size_t n)
+{
+	size_t i;
 
-int get_next_line(const int fd, char **line);
-
-#endif
+	i = 0;
+	if (!s1 || !s2)
+		return (0);
+	while (i < n)
+	{
+		if (s1[i] != s2[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}

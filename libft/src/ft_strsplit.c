@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayla <ayla@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/19 06:50:55 by sconstab          #+#    #+#             */
-/*   Updated: 2019/09/17 12:27:04 by ayla             ###   ########.fr       */
+/*   Created: 2019/06/05 08:26:22 by sconstab          #+#    #+#             */
+/*   Updated: 2019/09/17 12:40:46 by ayla             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 32
-# define MAX_FD 1024
+#include "../includes/libft.h"
 
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include "../libft/includes/libft.h"
+char	**ft_strsplit(char const *s, char c)
+{
+	char	**sa;
+	size_t	x;
 
-int get_next_line(const int fd, char **line);
-
-#endif
+	x = 0;
+	if (!s || !c)
+		return (NULL);
+	if (!(sa = ft_memalloc(ft_wordcount(s, c) * sizeof(sa))))
+		return (NULL);
+	while (x < ft_wordcount(s, c))
+	{
+		sa[x] = ft_strnew(ft_strcnlen(s, c, x));
+		x++;
+	}
+	x = 0;
+	while (x < ft_wordcount(s, c))
+	{
+		sa[x] = ft_strcreturn(s, c, x);
+		x++;
+	}
+	return (sa);
+}

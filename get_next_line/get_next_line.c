@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sconstab <sconstab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayla <ayla@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 06:56:45 by sconstab          #+#    #+#             */
-/*   Updated: 2019/08/19 09:18:27 by sconstab         ###   ########.fr       */
+/*   Updated: 2019/09/19 07:37:21 by ayla             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+/* static char		*read_file(char **line, char *lines)
+{
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	while (lines[i] != '\n' && lines[i] != '\0')
+		i++;
+} */
 static int		read_line(const int fd, char **stored)
 {
 	int			ret;
@@ -62,4 +71,36 @@ int				get_next_line(const int fd, char **line)
 		return (-1);
 	ft_strcpy(store[fd], tmp + 1);
 	return (1);
+}
+
+int		main(int ac, char **av)
+{
+	int		fd;
+	char	*line;
+	char	*temp;
+
+	if (ac == 2)
+	{
+		fd = open(av[1], O_RDONLY);
+		while (get_next_line(fd, &line))
+		{
+			temp = line;
+			ft_putendl(line);
+			free(temp);
+		}
+	}
+	else
+	{
+		fd = open("get_next_line/get_next_line.c", O_RDONLY);
+		if (fd < 1)
+			return (0);
+		while (get_next_line(fd, &line))
+		{
+			temp = line;
+			ft_putendl(line);
+			free(temp);
+		}
+	}
+	close(fd);
+	return (0);
 }
