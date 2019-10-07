@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ayla <ayla@student.42.fr>                  +#+  +:+       +#+         #
+#    By: sconstab <sconstab@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/20 09:03:43 by sconstab          #+#    #+#              #
-#    Updated: 2019/09/17 12:47:20 by ayla             ###   ########.fr        #
+#    Updated: 2019/10/07 13:20:39 by sconstab         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	libft.a
 FLAGS		=	-Wall -Werror -Wextra
 CC			=	gcc
-SRC_FILES 	=	ft_atoi.c\
+SRC			=	ft_atoi.c\
 				ft_bzero.c\
 				ft_find_replace.c\
 				ft_intlen.c\
@@ -59,6 +59,7 @@ SRC_FILES 	=	ft_atoi.c\
 				ft_striter.c\
 				ft_striteri.c\
 				ft_strjoin.c\
+				ft_strjoinfree.c\
 				ft_strlcat.c\
 				ft_strlen.c\
 				ft_strmap.c\
@@ -79,7 +80,7 @@ SRC_FILES 	=	ft_atoi.c\
 				ft_tolower.c\
 				ft_toupper.c\
 				ft_wordcount.c\
-				get_next_line.c\
+				ft_get_next_line.c\
 				lst_knock.c\
 				lst_lstadd.c\
 				lst_lstnew.c\
@@ -112,12 +113,13 @@ $(OBJ_DIR):
 	@echo "\033[32m[Started Compiling]\033[0m"
 
 clean: 
-	@rm -rf $(OBJ)
+	@rm -rf $(OBJS)
 	@rm -rf $(OBJ_DIR)
 	@echo "\033[31m[Object Files Removed]\033[0m"
 
 fclean: clean
 	@rm -f $(NAME)
+	@echo "\033[31m[$(NAME) Files Removed]\033[0m"
 
 re: fclean all
 

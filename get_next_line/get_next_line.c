@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayla <ayla@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sconstab <sconstab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 06:56:45 by sconstab          #+#    #+#             */
-/*   Updated: 2019/09/19 07:37:21 by ayla             ###   ########.fr       */
+/*   Updated: 2019/10/07 12:53:44 by sconstab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/* static char		*read_file(char **line, char *lines)
+static char		*read_file(char **line, char *lines)
 {
 	char	*tmp;
 	int		i;
@@ -20,59 +20,44 @@
 	i = 0;
 	while (lines[i] != '\n' && lines[i] != '\0')
 		i++;
-} */
-static int		read_line(const int fd, char **stored)
-{
-	int			ret;
-	char		*got;
-	char		*tmp;
-
-	if (!(got = ft_strnew(BUFF_SIZE)))
-		return (-1);
-	ret = read(fd, got, BUFF_SIZE);
-	if (ret > 0)
+	*line = ft_strsub(lines, 0, i);
+	if (ft_strcmp(lines, *line) == 0)
+		return (NULL);
+	else
 	{
-		got[ret] = 0;
-		if (!(tmp = ft_strjoin(*stored, got)))
-			return (-1);
-		free(*stored);
-		*stored = tmp;
-		free(got);
+		tmp = ft_strsub(lines, i + 1, ft_strlen(lines + i) + 1);
+		free(lines);
 	}
-	if (ret == 0)
-		free(got);
-	return (ret);
+	return (tmp);
 }
 
 int				get_next_line(const int fd, char **line)
 {
 	int			val;
+	char		tmp[BUFF_SIZE + 1];
 	static char	*store[1024];
-	char		*tmp;
 
+	val = 0;
+	if (read(fd, tmp, 0) < 0 || fd < 0 || line == NULL)
+		return (-1);
 	if (!store[fd])
-		store[fd] = ft_strnew(BUFF_SIZE);
-	if (!store[fd] || fd < 0 || BUFF_SIZE <= 0)
-		return (-1);
-	tmp = ft_strchr(store[fd], '\n');
-	while (!tmp)
+		store[fd] = ft_strnew(0);
+	if (!(ft_strchr(store[fd], '\n')))
 	{
-		val = read_line(fd, &store[fd]);
-		if (val == 0 && !ft_strlen(store[fd]))
-			return (0);
-		if (val == 0)
-			ft_strcat(store[fd], "\n");
-		if (val < 0)
-			return (-1);
-		else
-			tmp = ft_strchr(store[fd], '\n');
+		while ((val = read(fd, tmp, BUFF_SIZE)) > 0)
+		{
+			tmp[val] = '\0';
+			store[fd] = ft_strjoinfree(store[fd], tmp);
+			if (ft_strchr(store[fd], '\n'))
+				break ;
+		}
 	}
-	if (!(*line = ft_strsub(store[fd], 0, ft_strlen(store[fd]) - ft_strlen(tmp))))
-		return (-1);
-	ft_strcpy(store[fd], tmp + 1);
+	if (val == 0 && !(ft_strlen(store[fd])))
+		return (0);
+	store[fd] = read_file(line, store[fd]);
 	return (1);
 }
-
+/* 
 int		main(int ac, char **av)
 {
 	int		fd;
@@ -103,4 +88,4 @@ int		main(int ac, char **av)
 	}
 	close(fd);
 	return (0);
-}
+} */
