@@ -1,0 +1,28 @@
+body {
+	background-color: hotpink;
+}
+
+.drop {
+	position: relative;
+	display: inline-block;
+	width: 50px;
+	text-align: center;
+	background-color: #f9f9f9;
+  }
+  
+.drop1, .drop2, .drop3, .drop4, .drop5, .drop1-1 {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	width: 50px;
+	text-align: center;
+}
+
+.drop1-1 {
+	margin-left: 50px;
+}
+
+.drop:hover .drop1, .drop1:hover .drop2, .drop2:hover .drop3, .drop3:hover .drop4, .drop4:hover .drop5 {
+	display: block;
+}

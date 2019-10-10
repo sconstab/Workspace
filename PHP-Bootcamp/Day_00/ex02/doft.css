@@ -1,0 +1,152 @@
+body {
+	margin: 18px 0 0 8px;
+	background-color: #505050;
+}
+
+.page {
+	margin: 0 auto;
+	width: 1420px;
+}
+
+header {
+	width: 1420px;
+	height: 137px;
+	position: relative;
+}
+
+header, .menu, .content, .menu2, .form{
+	border-radius: 9px;
+	background-color: #909090;
+	box-shadow: 10px 10px 10px #000000;
+}
+
+header img.logo {
+	height: 110px;
+	margin: 10px 0 0 10px;
+}
+
+header img.search {
+	position: absolute;
+	top: 10px;
+	right: 20px;
+}
+
+header img.reload {
+	top: 10px;
+}
+
+header img.close {
+	bottom: 10px;
+}
+
+header img.reload, header img.close {
+	position: absolute;
+	right: 5px;
+	height: 20px;
+	width: 20px;
+}
+
+.menu {
+	width: 105px;
+	height: 410px;
+	margin: 20px 0 0 30px;
+	padding: 15px 0 0 35px;
+	float: left;
+}
+
+.content {
+	width: 1020px;
+	height: 582px;
+	margin: 20px 0 0 30px;
+	float: left;
+	position: relative;
+}
+
+.content img {
+	margin: 10px;
+	width: 1000px;
+	height: 562px;
+}
+
+.menu img {
+	width: 70px;
+	margin-bottom: 6px;
+}
+
+.menu img.look {
+	border: 5px solid red;
+	border-radius: 5px;
+}
+
+.menu2 img {
+	width: 70px;
+	margin-bottom: 6px;
+}
+
+.menu2 {
+	width: 105px;
+	height: 410px;
+	margin: 20px 0 0 30px;
+	padding: 15px 0 0 35px;
+	float: left;
+}
+
+.menu2 .wall {
+	content: '';
+	background-image: url('resources/brick.jpg');
+	width: 120px;
+	height: 70px;
+	margin: -5px 0 0 -25px;
+}
+
+.form {
+	background-color: #89fe8c;
+	width: 500px;
+	height: 150px;
+	position: absolute;
+	bottom: -94px;
+	left: -245px;
+	padding: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-stretch: expanded !important;
+	letter-spacing: 1px;
+	font-weight: 300;
+}
+
+.form span.big {
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 31px;
+}
+
+.form span.shadow {
+	text-shadow: 5px 5px 5px red;
+}
+
+.form span.italic {
+	font-style: italic;
+}
+
+.form form {
+	height: 22px;
+}
+
+.form form input[type=text] {
+	margin: 0 0 0 2px;
+	width: 347px;
+	border: 2px solid #9d969d;
+	border-bottom-color: #eeeeee;
+	border-right-color: #eeeeee;
+}
+
+.form form input[type=submit] {
+	border: 1px solid #a8a4a5;
+	border-radius: 2px;
+	background-color: #f4eff3;
+	background: #0079FF;
+	margin-left: 4px;
+	height: 22px;
+	font-size: 12px;
+	letter-spacing: 1px;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f4eff3), to(#dcdcdc));
+}
