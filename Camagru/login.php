@@ -1,26 +1,35 @@
 <?php
-	require('require.php');
-	require('database.php');
-	if (isset($_REQUEST[login])) {
+require('config/require.php');
+
+$error = "";
+
+try {
+	if ($_REQUEST[login] == true) {
 		$username = $_POST[username];
 		$password = $_POST[password];
-		$error = 'wrong username or password.</label>';
-		$sql = "SELECT Username FROM $TB_NAME";
-		$sql1 = "SELECT Password FROM $TB_NAME";
-		$users = user($sql);
+		$sql = "SELECT `Username` FROM $TB_NAME";
+		$users = $conn->prepare($sql);
+		$users->execute();
+		$get_users = $users->fetchAll();
 		
+		echo hi;
 		foreach ($users as $user) {
-			if ($user[Username] == $username && password_verify($password, $user[Password])) {
-				$_SESSION[logged_in] = true;
-				$_SESSION[username] = $_POST[username];
-				header("Location: main_page.php");
-			}
+			echo password_hash(safe_input($user[Password]), PASSWORD_BCRYPT);
+			// if ($user[Username] == $username && password_verify($password, password_hash(safe_input($user[Password]), PASSWORD_BCRYPT))) {
+			// 	$_SESSION[logged_in] = true;
+			// 	$_SESSION[username] = $_POST[username];
+			// 	header("Location: main_page.php");
+			// }
 		}
-		if (db_datacmp($username, $sql)) {
-			// hello finish off here
-		}
-		echo $error_msg.$error;
+		$error = "<div style='color: red'>wrong username or password.</div>";
+		// if (db_datacmp($username, $sql)) {
+		// 	// hello finish off here
+		// }
 	}
+}
+catch (PDOException $message) {
+	echo $message;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,6 +50,7 @@
 					</div>
 					<div class="signup form field">
 						<input type="password" name="password" placeholder="Password" class="signup form field" required>
+						<?php echo $error; ?>
 					</div>
 					<div class="signup form field">
 						<input type="submit" value="Login" class="signup form field button">

@@ -5,5 +5,4 @@ $DB_USER = 'root';
 $DB_PASSWORD = 'WolfKiller20';
 $DB_ONCE = 'mysql:host=localhost';
 $TB_NAME = 'users';
-$error_msg = '<label class="error">You F***ed up, ';
 ?>

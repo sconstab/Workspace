@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION[logged_in])) {
+if (empty($_SESSION[logged_in])) {
 	$_SESSION[logged_in] = false;
 }
 require('database.php');
