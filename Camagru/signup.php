@@ -1,7 +1,8 @@
 <?php
+require_once('header.php');
+require_once('config/setup.php');
 require('config/require.php');
 require('config/database.php');
-require_once('header.php');
 
 $usernameErr = $nameErr = $surnameErr = $emailErr = $passwordErr = $passCheckErr = $dupNameErr = $dupEmailErr = "";
 $username = $name = $surname = $email = $password = "";
@@ -55,10 +56,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <div class="signup form base">
-	<h1 class="signup form logo">Camagru</h1>
+	<h1 class="signup form logo">Signup</h1>
 	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 		<div class="signup form field">
-			<input type="text" name="username" placeholder="Username" class="signup form field" <?php if (isset($username)) {echo 'value="'.$username.'"';} ?> required>
+			<input type="text" name="username" placeholder="Username" class="signup form field" <?php if (isset($username)) {echo 'value="'.$username.'"';} ?> required autofocus>
 			<?php echo $usernameErr; if ($dupNameErr != "") {echo $dupNameErr;} ?>
 		</div>
 		<div class="signup form field">

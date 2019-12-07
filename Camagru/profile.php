@@ -1,6 +1,11 @@
 <?php
-require('config/require.php');
 require_once('header.php');
+
+if (!isset($_SESSION[username]) || empty($_SESSION[username])) {
+	header('location: index.php');
+}
+
+require('config/require.php');
 
 $nameErr = $surnameErr = $emailErr = $passwordErr = $passCheckErr = $dupNameErr = $dupEmailErr = "";
 $username = $name = $surname = $password = $email = $notify = "";
