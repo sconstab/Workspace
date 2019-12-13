@@ -17,5 +17,4 @@ $req->bindParam(':n', $_POST['file']);
 $req->execute();
 
 unlink(__DIR__."/uploads/images/".$_POST['file']);
-echo __DIR__."/uploads/images/".$_POST['file'];
 ?>

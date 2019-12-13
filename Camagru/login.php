@@ -1,7 +1,7 @@
 <?php
-require_once('header.php');
 require_once('config/setup.php');
 require('config/require.php');
+require_once('header.php');
 
 $error = "";
 
@@ -24,6 +24,9 @@ try {
 				$_SESSION[email] = $users[Email];
 				$_SESSION[notify] = $users[Notify];
 				header("location: index.php");
+				if ($_SESSION[notify] = 1) {
+					mail($_SESSION[email], "Camagru", "You logged in");
+				}
 			} else {
 				$error = "<div style='color: red'>Please go check your email<br/>for the verify email</div>";
 			}

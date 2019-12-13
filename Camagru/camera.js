@@ -5,10 +5,11 @@ const captureButton = document.querySelector("#capture-btn");
 const deleteButton = document.querySelector("#delete-btn");
 const imagePicker = document.querySelector("#image-picker");
 const imagePickerArea = document.querySelector("#pick-image");
+const pickedImage = document.querySelector("#picked-image");
 const newImages = document.querySelector("#newImages");
+const pickedWra = document.querySelector("#picked-wra");
 const imageLoc = "uploads/images/";
 const stiLoc = "/stickers";
-var stickers = false;
 
 const width = 320;
 const height = 240;
@@ -54,7 +55,7 @@ const startMedia = () => {
     	videoPlayer.style.display = "block";
     })
     .catch(err => {
-    	imagePickerArea.style.display = "block";
+    	alert("Error Video is not available");
     });
 };
 

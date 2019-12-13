@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,4 +30,5 @@ session_start();
 		?>
 	</div>
 	<br/>
-	<hr class="h" style="border-color: black;">
+	<hr class="h" style="border: 1px solid black; width: 99%;">
+

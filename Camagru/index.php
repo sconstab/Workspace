@@ -1,7 +1,7 @@
 <?php
-require_once('header.php');
 require_once('config/setup.php');
 require('config/require.php');
+require_once('header.php');
 ?>
 
 <div class="signup form base">

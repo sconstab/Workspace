@@ -20,7 +20,8 @@ try {
 		`Email` VARCHAR(255) NOT NULL,
 		`Password` VARCHAR(255) NOT NULL,
 		`Valid` BOOLEAN NOT NULL DEFAULT FALSE,
-		`Notify` BOOLEAN NOT NULL DEFAULT TRUE
+		`Notify` BOOLEAN NOT NULL DEFAULT TRUE,
+		`reset` BOOLEAN NOT NULL DEFAULT FALSE
 		)";
 	$conn->exec($sql);
 
@@ -45,6 +46,9 @@ try {
 		`comment` VARCHAR(510) NOT NULL
 		)";
 	$conn->exec($sql);
+
+	mkdir('./uploads');
+	mkdir('./uploads/images');
 } catch (PDOException $e) {
 	echo $e->getMessage();
 }

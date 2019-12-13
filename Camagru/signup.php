@@ -1,8 +1,7 @@
 <?php
-require_once('header.php');
 require_once('config/setup.php');
 require('config/require.php');
-require('config/database.php');
+require_once('header.php');
 
 $usernameErr = $nameErr = $surnameErr = $emailErr = $passwordErr = $passCheckErr = $dupNameErr = $dupEmailErr = "";
 $username = $name = $surname = $email = $password = "";
@@ -46,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$stat->bindParam(':Username', $username);
 			$stat->bindParam(':Password', $password);
 			$stat->execute();
-			mail($email, "Confirm", "10.204.19.3:8080/Workspace/Camagru/validate.php?email=$email");
+			mail($email, "Confirm", "10.204.19.3:8080".dirname($_SERVER[PHP_SELF])."/validate.php?email=$email");
 			header("Location: login.php");
 		} catch (PDOException $e) {
 			echo $e->getMessage();

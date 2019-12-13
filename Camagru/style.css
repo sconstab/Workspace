@@ -1,6 +1,7 @@
 * {
 	margin: 0;
 	padding: 0;
+	border: 0;
 }
 
 #header {
@@ -25,10 +26,10 @@
 }
 
 .signup.form.base.feed {
-	width: 450px;
+	width: 360px;
 	display: flex;
-    flex-direction: column;
-    align-items: center;
+	flex-direction: column;
+	align-items: center;
 }
 
 .signup.form.base {
@@ -55,8 +56,12 @@
 	text-align: center;
 }
 
+img.signup.form.field {
+	margin: 0;
+}
+
 input.signup.form.field {
-    align-items: center;
+	align-items: center;
     background: #fafafa;
     border: 1px solid #efefef;
     border-radius: 3px;
@@ -93,6 +98,17 @@ input.signup.form.field.button {
 	left: 0;
 }
 
+#picked-wra {
+	display: none;
+	width: 320px;
+	margin: 0 auto 0 auto;
+}
+
+#picked-wra canvas, #picked-wra img {
+	top: 0;
+	left: 0;
+}
+
 #player {
 	margin-left: auto;
 	margin-right: auto;
@@ -104,14 +120,16 @@ input.signup.form.field.button {
 }
 
 #newImages {
-    height: 300px;
+	height: 300px;
     position: relative;
 	max-width: 100%;
 	display: none;
+	text-align: center;
+	margin: 80px auto 60px 50px;
 }
 
 img.masked {
-    position: absolute;
+	position: absolute;
     background-color: #fff;
     border: 1px solid #babbbd;
     padding:10px;
@@ -122,20 +140,35 @@ img.masked {
 canvas{
 	margin-left: auto;
 	margin-right: auto;
-    width: 320px;
-    height: 240px;
 	margin: 10px auto;
 	display: none;
 	border: 2px solid blue;
 }
 
 #capture-btn{
-    width: 130px;
+	width: 130px;
     margin: 0 auto;
 }
 
+#pick-image {
+	text-align: center;
+	padding-top: 30px;
+	padding-bottom: 10px;
+}
+
+#picked-image {
+	width: 320px;
+	border: 2px solid blue;
+	margin: 20px auto 0 auto;
+}
+
+#picked-sti {
+	border: 2px solid red;
+	margin: 20px auto 0 auto;
+}
+
 .btn.btn-primary {
-    display: inline-block;
+	display: inline-block;
     padding: 6px 12px;
     margin-bottom: 0;
     font-size: 14px;
@@ -157,6 +190,19 @@ canvas{
     color: #fff;
     background-color: #337ab7;
     border-color: #2e6da4;
+}
+
+#page-loading{
+	display: none;
+	padding: 10px;
+	background: #ffcece;
+}
+
+#page-content, #content {
+	width: 320px;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 textarea.comments {
