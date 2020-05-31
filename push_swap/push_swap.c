@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+#include "../libft/includes/libft.h"
 
 static void ps_print(t_node *alst, t_node *blst)
 {
@@ -83,20 +83,20 @@ int	main(int ac, char **av)
 			if (lst_b->next->next != NULL)
 			{
 				if (ft_atoi(lst_b->dt->content) < ft_atoi(lst_b->next->dt->content))
-					ps_swap(&lst_b);
+					lst_swap(&lst_b);
 			}
 			else if (lst_a->next->next != NULL)
 			{
 				if (ft_atoi(lst_a->dt->content) > ft_atoi(lst_a->next->dt->content))
-					ps_swap(&lst_a);
+					lst_swap(&lst_a);
 				if (ft_atoi(lst_a->dt->content) > ft_atoi(last->dt->content))
-					ps_revrot(&lst_a);
+					lst_revrot(&lst_a);
 			}
 			else if (lst_a->next != NULL)
-				ps_knock(&lst_a, &lst_b);
+				lst_knock(&lst_a, &lst_b);
 			else
 				return (0);
-			ps_print(lst_a, lst_b);
+			lst_print(lst_a, lst_b);
 			sleep(5);
 			if (lst_a->next == NULL)
 				break ;
