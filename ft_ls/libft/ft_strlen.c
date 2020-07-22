@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.c                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sconstab <sconstab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmathews <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/07 19:33:32 by sconstab          #+#    #+#             */
-/*   Updated: 2019/09/07 20:36:34 by sconstab         ###   ########.fr       */
+/*   Created: 2019/05/20 12:58:36 by zmathews          #+#    #+#             */
+/*   Updated: 2019/05/22 07:19:57 by zmathews         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "./includes/libft.h"
 
-int main(int ac, char **av)
+size_t		ft_strlen(const char *s)
 {
-    int 	i;
-	t_ls	*ls;
+	size_t len;
 
-    i = 0;
-	ls = ft_memalloc(sizeof(ls));
-	ls->data = ft_memalloc(sizeof(ls->data));
-    ls->data = opendir("./");
-	
+	len = 0;
+	while (s[len] != '\0')
+	{
+		len++;
+	}
+	return (len);
 }

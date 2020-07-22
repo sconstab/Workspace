@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/includes/libft.h"
+#include "./libft/includes/libft.h"
 
 static void ps_print(t_node *alst, t_node *blst)
 {

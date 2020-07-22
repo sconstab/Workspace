@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sconstab <sconstab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmathews <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/07 19:51:25 by sconstab          #+#    #+#             */
-/*   Updated: 2019/09/07 20:36:34 by sconstab         ###   ########.fr       */
+/*   Created: 2019/05/20 12:43:43 by zmathews          #+#    #+#             */
+/*   Updated: 2019/06/24 09:58:09 by zmathews         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS_H
-# define FT_LS_H
+#include "./includes/libft.h"
 
-# include "libc.h"
-# include <sys/dir.h>
-# include "../libft/libft.h"
-
-# define LIST DIR
-
-typedef struct	s_ls
+void	ft_putendl(char const *s)
 {
-    struct s_ls	*prev;
-	LIST		*data;
-	struct s_ls	*next;
-}				t_ls;
+	int i;
 
-#endif
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i] != '\0')
+	{
+		ft_putchar(s[i]);
+		i++;
+	}
+	ft_putchar('\n');
+}
