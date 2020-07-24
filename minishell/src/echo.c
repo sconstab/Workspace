@@ -39,33 +39,28 @@ char        **get_lines(char type)
 }
 
 
-char       **val_subshell(char **seg, char **exp)
-{
-    int		i;
-	int		q1;
-	int		q2;
-    char	*str;
-    char	**extra;
+// char       **val_subshell(char **seg, char **exp)
+// {
+//     int		i;
+//     char	*str;
+//     char	**extra;
 
-    extra = NULL;
-    str = NULL;
-    i = 0;
-	q1 = q2 = -1;
-    while (seg[i])
-    {
-        if ((str = strchr(seg[i], '\'')))
-        	q1 *= -1;
-		if ((str = strchr(seg[i], '\"')))
-			q2 *= -1;
-        i++;
-	}
-    if (str && (q1 == 1 || q2 == 1))
-    {
-        extra = get_lines(str[0]);
-    }                                                                                     
-    *exp = str;
-    return (extra);
-}
+//     extra = NULL;
+//     str = NULL;
+//     i = 0;
+//     while (seg[i])
+//     {
+//         if ((str = strchr(seg[i], '\'')) || (str = strchr(seg[i], '\"')))
+//            break ;
+//         i++; 
+//     }
+//     if (str)
+//     {
+//         extra = get_lines(str[0]);
+//     }                                                                                     
+//     *exp = str;
+//     return (extra);
+// }
 
 void        do_print(char *str, char *exp)
 {
@@ -108,7 +103,7 @@ void        print_stuff(t_env *env, char **seg)
     char    *exp;
 
     exp = NULL;
-    subshell = val_subshell(seg, &exp);
+    // subshell = val_subshell(seg, &exp);
     i = 1;
     while (seg[i])
     {
@@ -126,8 +121,8 @@ void        print_stuff(t_env *env, char **seg)
         i++;
     }
     ft_putstr("\n");
-    if (subshell)
-        print_subshell(subshell, exp);
+    // if (subshell)
+    //     print_subshell(subshell, exp);
 }
 
 void        ft_echo(t_env *env, char *buffer)
