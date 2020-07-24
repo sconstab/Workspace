@@ -2,15 +2,15 @@
 
 t_env		*init(void)
 {
-	extern char **c;
+	extern char **env_c;
 	t_env		*env;
 	int i;
 
 	i = 0;
 	env = NULL;
-	while (c[i] != NULL)
+	while (env_c[i] != NULL)
 	{
-		env = node(c[i], env);
+		env = node(env_c[i], env);
 		i++;
 	}
 	return (env);
