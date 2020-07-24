@@ -1,4 +1,4 @@
-+#include "../includes/ft_ls.h"
+#include "../includes/ft_ls.h"
 
 void	printPermissions(struct stat permissions)
 {
