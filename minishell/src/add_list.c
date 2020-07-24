@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 t_enviro	*new_node(const char *stuff)
 {

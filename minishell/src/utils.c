@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 int		check_for_env(t_enviro *env, char *to_find)
 {

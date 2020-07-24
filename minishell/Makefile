@@ -2,7 +2,7 @@ NAME = minishell
 
 PATH_LIBFT = ./libft/
 
-PATH_SRC = ./SRC/
+PATH_SRC = ./src/
 
 SRCS =	main.c\
 		add_list.c\

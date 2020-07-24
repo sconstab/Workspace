@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 t_enviro	*run_setenv(char *buffer, t_enviro *env)
 {

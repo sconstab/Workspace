@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 void        print_env_var(t_enviro *env, char *to_print)
 {

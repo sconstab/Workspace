@@ -1,5 +1,4 @@
-#include "minishell.h"
-
+#include "../includes/minishell.h"
 
 t_enviro		*init(void)
 {

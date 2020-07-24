@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 void	ft_system(t_enviro *env, char *buffer)
 {
