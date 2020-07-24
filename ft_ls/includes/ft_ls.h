@@ -56,5 +56,6 @@ set				*setFlags(void);
 void			freeFlags(set *flags);
 void			initMain(int ac, char **av, int avi, t_ls *data, set *flags);
 void			listDel(t_ls *data);
+int				findDash(char *flag, set *flags);
 
 #endif
