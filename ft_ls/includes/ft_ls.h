@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sconstab <sconstab@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/07 19:51:25 by sconstab          #+#    #+#             */
-/*   Updated: 2019/09/07 20:36:34 by sconstab         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef FT_LS_H
 # define FT_LS_H
 
@@ -49,7 +37,7 @@ void			illegalOption(char flag);
 void			exists(char *flag, t_ls *data, set *flags);
 void			exists_1(char *flag, t_ls *data);
 void			exists_2(char *flag, t_ls *data);
-void			exists_3(char *flag, t_ls *data, is_set *flags);
+void			exists_3(char *flag, t_ls *data, set *flags);
 int				doubleDash(int ac, char *flag);
 void			flagCheck(int ac, char **av, set *flags, t_ls *data);
 void			flagCheck1(char **av, int avi, set *flags, t_ls *data);
@@ -62,7 +50,7 @@ void			multipleFlags(t_ls *data, set *flags, char *flagString);
 void			sortAscii(t_ls *tmp);
 void			sortRevList(t_ls *tmp);
 int				timeCompare(char *s1, char *s2);
-void			sortTime(t_ls *tmp, is_set *flags);
+void			sortTime(t_ls *tmp, set *flags);
 t_ls			*dataTypeName(char *path);
 set				*setFlags(void);
 void			freeFlags(set *flags);
