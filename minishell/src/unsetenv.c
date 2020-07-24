@@ -1,6 +1,6 @@
 #include "../includes/minishell.h"
 
-t_env	*unsetenv(char *buffer, t_env *env)
+t_env	*run_unsetenv(char *buffer, t_env *env)
 {
 	char	**arg;
 
