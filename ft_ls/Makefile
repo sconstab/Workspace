@@ -16,7 +16,16 @@ PATH_LIBFT = ./libft/
 
 PATH_SRC = ./srcs/
 
-SRCS = ft_ls.c\
+SRCS =	ft_ls.c\
+		d_l.c\
+		error.c\
+		exist.c\
+		ft_ls.c\
+		parsing.c\
+		print.c\
+		sort.c\
+		store.c\
+		utils.c
 
 FLAGS = -Wall -Werror -Wextra
 
