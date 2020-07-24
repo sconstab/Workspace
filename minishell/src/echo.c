@@ -42,19 +42,24 @@ char        **get_lines(char type)
 char       **val_subshell(char **seg, char **exp)
 {
     int		i;
+	int		q1;
+	int		q2;
     char	*str;
     char	**extra;
 
     extra = NULL;
     str = NULL;
     i = 0;
+	q1 = q2 = -1;
     while (seg[i])
     {
-        if ((str = strchr(seg[i], '\'')) || (str = strchr(seg[i], '\"')))
-           break ;
-        i++; 
-    }
-    if (str)
+        if (str = strchr(seg[i], '\''))
+        	q1 *= -1;
+		if (str = strchr(seg[i], '\"'))
+			q2 *= -1;
+        i++;
+	}
+    if (str && (q1 == 1 || q2 == 1))
     {
         extra = get_lines(str[0]);
     }                                                                                     
