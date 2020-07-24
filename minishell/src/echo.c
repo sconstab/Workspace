@@ -53,9 +53,9 @@ char       **val_subshell(char **seg, char **exp)
 	q1 = q2 = -1;
     while (seg[i])
     {
-        if (str = strchr(seg[i], '\''))
+        if ((str = strchr(seg[i], '\'')))
         	q1 *= -1;
-		if (str = strchr(seg[i], '\"'))
+		if ((str = strchr(seg[i], '\"')))
 			q2 *= -1;
         i++;
 	}
