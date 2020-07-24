@@ -1,4 +1,4 @@
-NAME = ft_ls
+	NAME = ft_ls
 
 PATH_LIBFT = ./libft/
 
@@ -32,12 +32,12 @@ $(PATH_SRC)%.o:	$(PATH_SRC)%.c
 
 clean:
 	@make -C $(PATH_LIBFT) clean
-	@/bin/rm -rf $(SRC_O)
+	@rm -rf $(SRC_O)
 	@echo "\033[31mObject Files \033[1;31m$(OBJS_LIST)\033[1;0m\033[31mRemoved.\033[0m"
 
 fclean:			clean
 	@make -C $(PATH_LIBFT) fclean
-	@/bin/rm -rf $(NAME)
+	@rm -rf $(NAME)
 	@echo "\033[31mBin \033[1;31m$(NAME)\033[1;0m\033[31m Removed.\033[0m"
 
 re:				fclean all

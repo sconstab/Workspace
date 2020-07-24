@@ -29,8 +29,12 @@ $(NAME):	$(SRC_O)
 	@gcc $(FLAGS) -o $(NAME) $(SRC) $(PATH_LIBFT)libft.a
 	@echo "\033[32mBinary \033[1;32m$(NAME)\033[1;0m\033[32m Created.\033[0m"
 
+$(PATH_SRC)%.o:	$(PATH_SRC)%.c
+	@gcc $(FLAGS) -c $< -o $@
+	
 clean:
 	@make -C $(PATH_LIBFT) clean
+	@rm -rf $(SRC_O)
 	@echo "\033[31mObject Files \033[1;31m$(OBJS_LIST)\033[1;0m\033[31mRemoved.\033[0m"
 
 fclean:		clean
