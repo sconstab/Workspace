@@ -1,8 +1,8 @@
 #include "../includes/minishell.h"
 
-void	free_list(t_enviro *list)
+void	free_lst(t_env *list)
 {
-	t_enviro		*head;
+	t_env		*head;
 
 	head = list;
 	while (head != NULL)
@@ -11,6 +11,5 @@ void	free_list(t_enviro *list)
 		free(head->value);
 		free(head);
 		head = head->next;
-		// free(list);
 	}
 }

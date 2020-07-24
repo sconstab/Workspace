@@ -1,22 +1,22 @@
 #include "../includes/minishell.h"
 
-void        print_env_var(t_enviro *env, char *to_print)
+void        print_env_var(t_env *env, char *print)
 {
-	t_enviro	*tmp;
+	t_env	*lst;
 
-	tmp = env;
-	while (tmp != NULL)
+	lst = env;
+	while (lst != NULL)
 	{
-		if (ft_strcmp(tmp->key, to_print) == 0)
+		if (ft_strcmp(lst->key, to_print) == 0)
 		{
-            ft_putendl(tmp->value);
+            ft_putendl(lst->value);
 			break;
 		}
-		tmp = tmp->next;
+		lst = lst->next;
 	}
 }
 
-char        **get_next_next_lines(char type)
+char        **get_lines(char type)
 {
     char    *str;
     char    **array;
@@ -39,27 +39,27 @@ char        **get_next_next_lines(char type)
 }
 
 
-char       **validate_subshell(char **segments, char **exp)
+char       **val_subshell(char **seg, char **exp)
 {
-    int i;
-    char *type;
-    char **extra_lines;
+    int		i;
+    char	*str;
+    char	**extra;
 
-    extra_lines = NULL;
-    type = NULL;
+    extra = NULL;
+    str = NULL;
     i = 0;
-    while (segments[i])
+    while (seg[i])
     {
-        if ((type = strchr(segments[i], '\'')) || (type = strchr(segments[i], '\"')))
+        if ((str = strchr(seg[i], '\'')) || (str = strchr(seg[i], '\"')))
            break ;
         i++; 
     }
-    if (type)
+    if (str)
     {
-        extra_lines = get_next_next_lines(type[0]);
+        extra = get_lines(str[0]);
     }                                                                                     
-    *exp = type;
-    return (extra_lines);
+    *exp = str;
+    return (extra);
 }
 
 void        do_print(char *str, char *exp)
@@ -96,41 +96,40 @@ void        print_subshell(char **subshell, char *exp)
     free2d(subshell);
 }
 
-void        print_stuff(t_enviro *env, char **segments)
+void        print_stuff(t_env *env, char **seg)
 {
     int     i;
     char    **subshell;
     char    *exp;
 
     exp = NULL;
-    subshell = validate_subshell(segments, &exp);
+    subshell = val_subshell(seg, &exp);
     i = 1;
-    while (segments[i])
+    while (seg[i])
     {
-        if (segments[i][0] == '$')
+        if (seg[i][0] == '$')
         {
-            print_env_var(env, &segments[i][1]);
+            print_env_var(env, &seg[i][1]);
             i++;
             continue ;
         }
         else if (exp)
-            do_print(segments[i], exp);
-        ft_putstr(segments[i]);
-        if (segments[i + 1] != NULL)
+            do_print(seg[i], exp);
+        ft_putstr(seg[i]);
+        if (seg[i + 1] != NULL)
             ft_putstr(" "); 
         i++;
     }
     ft_putstr("\n");
     if (subshell)
         print_subshell(subshell, exp);
-
 }
 
-void        ft_echo(t_enviro *env, char *buffer)
+void        ft_echo(t_env *env, char *buffer)
 {
     char **args;
 
-    args =ft_strsplit(buffer, ' ');
+    args = ft_strsplit(buffer, ' ');
     print_stuff(env, args);
     free2d(args);
 }

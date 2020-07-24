@@ -1,80 +1,80 @@
 #include "../includes/minishell.h"
 
-t_enviro	*new_node(const char *stuff)
+t_env	*new_node(const char *c)
 {
-	t_enviro	*new;
-	char		**key_value;
+	t_env		*lst;
+	char		**key_val;
 
-	key_value = split_kv(stuff);
-	new = (t_enviro *)malloc(sizeof(t_enviro));
-	new->key = ft_strdup(key_value[0]);
-	new->value = ft_strdup(key_value[1]);
-	new->next = NULL;
-	free2d(key_value);
-	return (new);
+	key_val = split(c);
+	lst = (t_env *)malloc(sizeof(t_env));
+	lst->key = ft_strdup(key_val[0]);
+	lst->value = ft_strdup(key_val[1]);
+	lst->next = NULL;
+	free2d(key_val);
+	return (lst);
 }
 
-void	add_node(const char *stuff, t_enviro *head)
+void	add_node(const char *stuff, t_env *head)
 {
-	t_enviro	*teleport;
-	char		**key_value;
+	t_env	*lst;
+	char	**key_val;
 
-	teleport = head;
-	key_value = split_kv(stuff);
-	while (teleport->next != NULL)
-		teleport = teleport->next;
-	teleport->next = (t_enviro *)malloc(sizeof(t_enviro));
-	teleport->next->key = ft_strdup(key_value[0]);
-	teleport->next->value = ft_strdup(key_value[1]);
-	teleport->next->next = NULL;
-	free2d(key_value);
+	lst = head;
+	key_val = split(stuff);
+	while (lst->next != NULL)
+		lst = lst->next;
+	lst->next = (t_env *)malloc(sizeof(t_env));
+	lst->next->key = ft_strdup(key_val[0]);
+	lst->next->value = ft_strdup(key_val[1]);
+	lst->next->next = NULL;
+	free2d(key_val);
 }
 
-t_enviro		*dynamic_node(char *stuff, t_enviro *head)
+t_env	*node(char *c, t_env *head)
 {
-	t_enviro		*teleport;
+	t_env	*lst;
 
-	teleport = head;
+	lst = head;
 	if (head == NULL)
 	{
-		head = new_node(stuff);
-		teleport = head;
+		head = new_node(c);
+		lst = head;
 	}
 	else
 	{
-		add_node(stuff, teleport);
-		head = teleport;
+		add_node(c, lst);
+		head = lst;
 	}
 	return (head);
 }
 
-char	**split_kv(const char *array)
+char	**split(const char *array)
 {
-	char	**key_value;
-	int i;
-	int j;
-	size_t len;
+	char	**key_val;
+	int		i;
+	int		j;
+	size_t	len;
 
 	i = 0;
 	j = 0;
 	len = ft_strlen(array);
-	key_value = (char **)malloc(sizeof(char*) * 3);
-	key_value[0] = (char *)malloc(sizeof(char) * len + 1);
-	key_value[1] = (char *)malloc(sizeof(char) * len + 1);
+	key_val = (char **)malloc(sizeof(char*) * 3);
+	key_val[0] = (char *)malloc(sizeof(char) * len + 1);
+	key_val[1] = (char *)malloc(sizeof(char) * len + 1);
 	while (array[i] != '=')
 	{
-		key_value[0][i] = array[i];
+		key_val[0][i] = array[i];
 		i++;
 	}
-	key_value[0][i] = '\0';
+	key_val[0][i] = '\0';
 	i++;
 	while (array[i] != '\0')
 	{
-		key_value[1][j] = array[i];
+		key_val[1][j] = array[i];
 		i++;
 		j++;
 	}
-	key_value[1][j] = '\0';
-	key_value[2] = NULL;
-	return (key_value);
+	key_val[1][j] = '\0';
+	key_val[2] = NULL;
+	return (key_val);
 }

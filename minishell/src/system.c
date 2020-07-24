@@ -1,17 +1,17 @@
 #include "../includes/minishell.h"
 
-void	ft_system(t_enviro *env, char *buffer)
+void	ft_sys(t_env *env, char *buffer)
 {
-	char	**segments;
+	char	**seg;
 	pid_t	pid;
 	char	*str1;
 	char	*str2;
 	char	**envp;
-	t_enviro *head;
+	t_env	*head;
 
 	head = env;
 	envp = NULL;
-	segments = ft_strsplit(buffer, ' ');
+	seg = ft_strsplit(buffer, ' ');
 	while (env != NULL)
 	{
 		str1 = ft_strjoin(env->key, "=");
@@ -23,49 +23,49 @@ void	ft_system(t_enviro *env, char *buffer)
 	}
 	if ((pid = fork()) == 0)
 	{
-		if (segments[0][0] == '/')
-			execve(segments[0], segments, envp);
+		if (seg[0][0] == '/')
+			execve(seg[0], seg, envp);
 		else
-			scan_path(head, segments);
+			scan_path(head, seg);
 		exit(1);
 	}
 	else
 		wait(&pid);
 	free2d(envp);
-	free2d(segments);
+	free2d(seg);
 }
 
-void	scan_path(t_enviro *env, char **segments)
+void	scan_path(t_env *env, char **seg)
 {
-	char *pathway;
-	t_enviro *head;
+	char	*path;
+	t_env	*head;
 
-	pathway = NULL;
+	path = NULL;
 	head = env;
 	while (env != NULL)
 	{
 		if (ft_strcmp(env->key, "PATH") == 0)
 		{
-			pathway = ft_strdup(env->value);
+			path = ft_strdup(env->value);
 			break;
 		}
 		env = env->next;
 	}
-	if (pathway)
-		scan_dir(pathway, segments, head);
-	free(pathway);
+	if (path)
+		scan_dir(path, seg, head);
+	free(path);
 }
 
-void	scan_dir(char *pathway, char **segments, t_enviro *env)
+void	scan_dir(char *path, char **seg, t_env *env)
 {
-	DIR		*dp;
+	DIR				*dp;
 	struct dirent	*dir;
-	char	**values;
-	int i;
-	int check;
+	char			**values;
+	int				i;
+	int				check;
 
 	check = 0;
-	values = ft_strsplit(pathway, ':');
+	values = ft_strsplit(path, ':');
 	if (!values)
 		return ;
 	i = 0;
@@ -80,9 +80,9 @@ void	scan_dir(char *pathway, char **segments, t_enviro *env)
 		{
 			if (ft_strcmp(dir->d_name, "..") == 0 || ft_strcmp(dir->d_name, ".") == 0)
 				continue;
-			if (ft_strcmp(segments[0], dir->d_name) == 0)
+			if (ft_strcmp(seg[0], dir->d_name) == 0)
 			{
-				execute(segments, values[i], env);
+				execute(seg, values[i], env);
 				check = 1;
 				break;
 			}
@@ -97,11 +97,11 @@ void	scan_dir(char *pathway, char **segments, t_enviro *env)
 	free2d(values);
 }
 
-void	execute(char **segment, char *cur_dir, t_enviro *env)
+void	execute(char **seg, char *cur_dir, t_env *env)
 {
-	char *str1;
-	char *str2;
-	char **envp;
+	char	*str1;
+	char	*str2;
+	char	**envp;
 
 	envp = NULL;
 
@@ -115,8 +115,8 @@ void	execute(char **segment, char *cur_dir, t_enviro *env)
 		env = env->next;
 	}
 	str1 = ft_strjoin(cur_dir, "/");
-	str2 = ft_strjoin(str1, segment[0]);
-	execve(str2, segment, envp);
+	str2 = ft_strjoin(str1, seg[0]);
+	execve(str2, seg, envp);
 	free(str1);
 	free(str2);
 	free2d(envp);

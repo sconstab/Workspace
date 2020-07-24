@@ -1,21 +1,21 @@
 #include "../includes/minishell.h"
 
-void	print_list(t_enviro *list)
+void	print_lst(t_env *list)
 {
-	t_enviro		*head;
+	t_env		*lst;
 
-	head = list;
-	while (head != NULL)
+	lst = list;
+	while (lst != NULL)
 	{
-		if ((head->key) == NULL && (head->value) == NULL)
+		if ((lst->key) == NULL && (lst->value) == NULL)
 			continue;
 		else
 		{
-			ft_putstr(head->key);
+			ft_putstr(lst->key);
 			ft_putchar('=');
-			ft_putendl(head->value);
+			ft_putendl(lst->value);
 		}
-		head = head->next;
-		list = head;
+		lst = lst->next;
+		list = lst;
 	}
 }

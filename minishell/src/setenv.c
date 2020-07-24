@@ -1,6 +1,6 @@
 #include "../includes/minishell.h"
 
-t_enviro	*run_setenv(char *buffer, t_enviro *env)
+t_env	*setenv(char *buffer, t_env *env)
 {
 	char **arg;
 
@@ -13,16 +13,16 @@ t_enviro	*run_setenv(char *buffer, t_enviro *env)
 	return (env);
 }
 
-void		ft_setenv(t_enviro *head, char *add)
+void		ft_setenv(t_env *head, char *add)
 {
-	t_enviro	*tmp;
+	t_env	*tmp;
 	char	**add_var;
-	int check;
+	int		check;
 
 	check = 0;
 	tmp = head;
 	if (ft_strchr(add, '='))
-		add_var = split_kv(add);
+		add_var = split(add);
 	else
 	{
 		ft_putendl("Syntax error: setenv key=value");
@@ -41,6 +41,6 @@ void		ft_setenv(t_enviro *head, char *add)
 		tmp = tmp->next;
 	}
 	if (check == 0)
-		head = dynamic_node(add, head);
+		head = node(add, head);
 	free2d(add_var);
 }

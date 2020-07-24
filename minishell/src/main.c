@@ -1,16 +1,16 @@
 #include "../includes/minishell.h"
 
-t_enviro		*init(void)
+t_env		*init(void)
 {
-	extern char **environ;
-	t_enviro		*env;
+	extern char **c;
+	t_env		*env;
 	int i;
 
 	i = 0;
 	env = NULL;
-	while (environ[i] != NULL)
+	while (c[i] != NULL)
 	{
-		env = dynamic_node(environ[i], env);
+		env = node(c[i], env);
 		i++;
 	}
 	return (env);
@@ -18,10 +18,9 @@ t_enviro		*init(void)
 
 int		main()
 {
-	t_enviro	*env;
+	t_env	*env;
 
 	env = init();
-	// print_list(env);
 	minishell(env);
 	return (0);
 }

@@ -2,7 +2,7 @@
 
 void	replace_tab(char buffer[])
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (buffer[i])
@@ -15,7 +15,7 @@ void	replace_tab(char buffer[])
 
 char	*read_line(void)
 {
-	size_t size;
+	size_t	size;
 	char	*str;
 	char	buffer[4096];
 
@@ -29,26 +29,26 @@ char	*read_line(void)
 	return (str);
 }
 
-void	minishell(t_enviro *env)
+void	minishell(t_env *env)
 {
 	char *buffer;
 
-	while (42)
+	while (1)
 	{
 		write(1, "$>", 2);
 		buffer = read_line();
 		if (ft_strlen(buffer) == 0 || buffer[0] == '\n')
 			continue;
 		if (ft_strncmp(buffer, "unsetenv ", 9) == 0)
-			run_unsetenv(buffer, env);
+			unsetenv(buffer, env);
 		else if (strcmp(buffer, "env") == 0)
-			print_list(env);
+			print_lst(env);
 		else if (ft_strncmp(buffer, "setenv ", 7) == 0)
-			run_setenv(buffer, env);
+			setenv(buffer, env);
 		else if (ft_strcmp(buffer, "exit") == 0)
 			{
 				free(buffer);
-				free_list(env);
+				free_lst(env);
 				return;
 			}
 		else if (ft_strncmp(buffer, "cd ", 3) == 0 || ft_strcmp(buffer, "cd") == 0)
@@ -56,7 +56,7 @@ void	minishell(t_enviro *env)
 		else if (strncmp(buffer, "echo ", 5) == 0 || strcmp(buffer, "echo") == 0)
             ft_echo(env, buffer);
 		else
-			ft_system(env, buffer);
+			ft_sys(env, buffer);
 		free(buffer);
 	}
 }

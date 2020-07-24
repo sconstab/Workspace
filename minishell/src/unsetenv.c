@@ -1,6 +1,6 @@
 #include "../includes/minishell.h"
 
-t_enviro	*run_unsetenv(char *buffer, t_enviro *env)
+t_env	*unsetenv(char *buffer, t_env *env)
 {
 	char	**arg;
 
@@ -13,29 +13,29 @@ t_enviro	*run_unsetenv(char *buffer, t_enviro *env)
 	return (env);
 }
 
-void	ft_unsetenv(t_enviro *head, char *remove)
+void	ft_unsetenv(t_env *head, char *remove)
 {
-	t_enviro *tmp;
-	t_enviro *prev;
+	t_env	*lst;
+	t_env	*prev;
 
-	tmp = head;
-	if (tmp != NULL && (ft_strcmp(tmp->key, remove) == 0))
+	lst = head;
+	if (lst != NULL && (ft_strcmp(lst->key, remove) == 0))
 	{
-		free(tmp->key);
-		free(tmp->value);
-		head = tmp->next;
-		free(tmp);
+		free(lst->key);
+		free(lst->value);
+		head = lst->next;
+		free(lst);
 		return ;
 	}
-	while (tmp != NULL && (ft_strcmp(tmp->key, remove) != 0))
+	while (lst != NULL && (ft_strcmp(lst->key, remove) != 0))
 	{
-		prev = tmp;
-		tmp = tmp->next;
+		prev = lst;
+		lst = lst->next;
 	}
-	if (tmp == NULL)
+	if (lst == NULL)
 		return;
-	prev->next = tmp->next;
-	free(tmp->key);
-	free(tmp->value);
-	free(tmp);
+	prev->next = lst->next;
+	free(lst->key);
+	free(lst->value);
+	free(lst);
 }
