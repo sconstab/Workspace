@@ -40,7 +40,7 @@ void	minishell(t_env *env)
 		if (ft_strlen(buffer) == 0 || buffer[0] == '\n')
 			continue;
 		if (ft_strncmp(buffer, "unsetenv ", 9) == 0)
-			unsetenv(buffer, env);
+			run_unsetenv(buffer, env);
 		else if (strcmp(buffer, "env") == 0)
 			print_lst(env);
 		else if (ft_strncmp(buffer, "setenv ", 7) == 0)
