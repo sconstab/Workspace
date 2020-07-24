@@ -14,13 +14,13 @@ t_env	*new_node(const char *c)
 	return (lst);
 }
 
-void	add_node(const char *stuff, t_env *head)
+void	add_node(const char *c, t_env *head)
 {
 	t_env	*lst;
 	char	**key_val;
 
 	lst = head;
-	key_val = split(stuff);
+	key_val = split(c);
 	while (lst->next != NULL)
 		lst = lst->next;
 	lst->next = (t_env *)malloc(sizeof(t_env));

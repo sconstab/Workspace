@@ -21,9 +21,9 @@ typedef struct		s_env
 
 char		*read_line(void);
 void		minishell(t_env *env);
-t_env		*node(char *stuff, t_env *head);
-t_env		*new_node(const char *stuff);
-void		add_node(const char *stuff, t_env *head);
+t_env		*node(char *c, t_env *head);
+t_env		*new_node(const char *c);
+void		add_node(const char *c, t_env *head);
 char		**split(const char *array);
 void		print_lst(t_env *lst);
 t_env		*run_unsetenv(char *buffer, t_env *env);
