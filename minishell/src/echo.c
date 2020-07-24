@@ -7,7 +7,7 @@ void        print_env_var(t_env *env, char *print)
 	lst = env;
 	while (lst != NULL)
 	{
-		if (ft_strcmp(lst->key, to_print) == 0)
+		if (ft_strcmp(lst->key, print) == 0)
 		{
             ft_putendl(lst->value);
 			break;
