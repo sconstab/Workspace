@@ -99,7 +99,7 @@ void        print_subshell(char **subshell, char *exp)
 void        print_stuff(t_env *env, char **seg)
 {
     int     i;
-    char    **subshell;
+    // char    **subshell;
     char    *exp;
 
     exp = NULL;
