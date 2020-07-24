@@ -7,8 +7,7 @@ PATH_SRC = ./srcs/
 SRCS =	ft_ls.c\
 		d_l.c\
 		error.c\
-		exist.c\
-		ft_ls.c\
+		exists.c\
 		parsing.c\
 		print.c\
 		sort.c\

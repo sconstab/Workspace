@@ -19,10 +19,12 @@ int	main(int ac, char **av)
 		if (findDash(av[avi], flags) == 3)
 		{
 			initMain(ac, av, avi, data, flags);
+			system("leaks ft_ls");
 			return (0);
 		}
 		else
 			multipleFlags(data, flags, ".");
 	}
+	system("leaks ft_ls");
 	return (0);
 }

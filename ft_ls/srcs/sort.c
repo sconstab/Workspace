@@ -59,7 +59,7 @@ int		timeCompare(char *s1, char *s2)
 	return (time1.st_ctime < time2.st_ctime);
 }
 
-void	sortTime(t_ls *tmp, is_set *flags)
+void	sortTime(t_ls *tmp, set *flags)
 {
 	t_ls	*head;
 	char	*str;
@@ -67,7 +67,7 @@ void	sortTime(t_ls *tmp, is_set *flags)
 	head = tmp;
 	while (tmp->next != NULL)
 	{
-		if (flags->dash_r)
+		if (flags->r)
 		{
 			if (timeCompare(tmp->next->fileName, tmp->fileName))
 			{

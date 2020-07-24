@@ -4,6 +4,10 @@
 # include "libc.h"
 # include <sys/dir.h>
 # include "../libft/includes/libft.h"
+# include <sys/stat.h>
+# include <uuid/uuid.h>
+# include <pwd.h>
+# include <grp.h>
 
 # define LIST DIR
 

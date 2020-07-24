@@ -1,4 +1,4 @@
-+#include "../includes/ft_ls.h"
+#include "../includes/ft_ls.h"
 
 void	printPermissions(struct stat permissions)
 {
@@ -69,7 +69,7 @@ void	printEverything(t_ls *store, set *flags)
 	printBlocks(store);
 	while (store->next)
 	{
-		if (!flags->dash_a)
+		if (!flags->a)
 		{
 			if (store->fileName[0] == '.')
 			{

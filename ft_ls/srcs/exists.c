@@ -13,7 +13,7 @@ void	exists(char *flag, t_ls *data, set *flags)
 			lstat(flag, &permissions);
 			if (S_ISDIR(permissions.st_mode))
 				exists_3(flag, data, flags);
-			if (flags->dash_l)
+			if (flags->l)
 				exists_2(flag, data);
 			else
 				ft_putendl(flag);
@@ -58,7 +58,7 @@ void	exists_2(char *flag, t_ls *data)
 		invalidFileOrDir(flag);
 }
 
-void	exists_3(char *flag, t_ls *data, is_set *flags)
+void	exists_3(char *flag, t_ls *data, set *flags)
 {
 	while (data->next && wordMatch(data->fileName, flag) != 0)
 		data = data->next;

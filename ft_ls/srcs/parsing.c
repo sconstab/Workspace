@@ -23,7 +23,7 @@ int		findDash(char *flag, set *flags)
 	if (flag[0] != '-')
 	{
 		foundOther += 1;
-		flags->foundOther = 1;
+		flags->Other = 1;
 		return (3);
 	}
 	return (0);
@@ -59,7 +59,7 @@ void	flagCheck1(char **av, int avi, set *flags, t_ls *data)
 	if (av[avi][0] == '-')
 	{
 		if (ft_strlen(av[avi]) == 1)
-			invalidFOrD("-");
+			invalidFileOrDir("-");
 		while (av[avi][i])
 		{
 			if (!ft_strchr("larRt", av[avi][i]))
